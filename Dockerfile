@@ -1,7 +1,6 @@
 # Build stage
-FROM node:alpine AS build
+FROM node:boomworm AS build
 WORKDIR /build
-RUN apk add --no-cache openssl && ln -s /usr/lib/libssl.so.3 /lib/libssl.so.3
 
 # Install modules with dev dependencies
 COPY package.json yarn.lock /build/
@@ -17,8 +16,7 @@ RUN rm -rf ./node_modules
 RUN yarn install --production --frozen-lockfile
 
 # Bundle stage
-FROM node:alpine AS production
-RUN apk add --no-cache openssl && ln -s /usr/lib/libssl.so.3 /lib/libssl.so.3
+FROM node:bookworm AS production
 
 WORKDIR /app
 
