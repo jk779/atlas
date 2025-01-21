@@ -1,5 +1,5 @@
 # Build stage
-FROM node:boomworm AS build
+FROM node:bookworm AS build
 WORKDIR /build
 
 # Install modules with dev dependencies
