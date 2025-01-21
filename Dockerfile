@@ -1,6 +1,7 @@
 # Build stage
-FROM node:lts-alpine AS build
+FROM node:20-alpine AS build
 WORKDIR /build
+RUN apk add --no-cache openssl && ln -s /usr/lib/libssl.so.3 /lib/libssl.so.3
 
 # Install modules with dev dependencies
 COPY package.json yarn.lock /build/
@@ -16,7 +17,8 @@ RUN rm -rf ./node_modules
 RUN yarn install --production --frozen-lockfile
 
 # Bundle stage
-FROM node:15-alpine AS production
+FROM node:20-alpine AS production
+RUN apk add --no-cache openssl && ln -s /usr/lib/libssl.so.3 /lib/libssl.so.3
 
 WORKDIR /app
 
