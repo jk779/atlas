@@ -1,5 +1,5 @@
 # Build stage
-FROM node:bullseye AS build
+FROM node:18-bullseye-slim AS build
 WORKDIR /build
 
 # Install modules with dev dependencies
@@ -16,7 +16,7 @@ RUN rm -rf ./node_modules
 RUN yarn install --production --frozen-lockfile
 
 # Bundle stage
-FROM node:bullseye AS production
+FROM node:18-bullseye-slim AS production
 
 WORKDIR /app
 
