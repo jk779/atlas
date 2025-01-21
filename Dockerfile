@@ -1,5 +1,5 @@
 # Build stage
-FROM node:bookworm AS build
+FROM node:bullseye AS build
 WORKDIR /build
 
 # Install modules with dev dependencies
@@ -16,7 +16,7 @@ RUN rm -rf ./node_modules
 RUN yarn install --production --frozen-lockfile
 
 # Bundle stage
-FROM node:bookworm AS production
+FROM node:bullseye AS production
 
 WORKDIR /app
 
